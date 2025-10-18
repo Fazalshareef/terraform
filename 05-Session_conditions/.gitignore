@@ -1,0 +1,36 @@
+# Local .terraform directories
+.terraform/
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Terraform variable files (often contain secrets)
+*.tfvars
+*.tfvars.json
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Local terraform files
+.terraform.lock.hcl
+.terraform.tfstate.backup
+
+# CLI configuration files
+.terraformrc
+terraform.rc
+
+# Any temporary or backup files
+*.bak
+*.backup
+*.tmp
+
+# macOS system files (optional, if using Mac)
+.DS_Store
