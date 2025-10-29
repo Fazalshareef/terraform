@@ -1,45 +1,45 @@
 resource "aws_vpc" "terraform_vpc" {
-    cidr_block = var.vpc_cidr
-    enable_dns_hostnames = true
-    enable_dns_support = true
+  cidr_block           = var.vpc_cidr
+  enable_dns_hostnames = true
+  enable_dns_support   = true
 
-    tags = {
-        name = var.vpc_name_tag
-    }
+  tags = {
+    name = var.vpc_name_tag
+  }
 
 }
 
 resource "aws_subnet" "subnets" {
-    count = length(var.public_subnet_cidrs)
-    vpc_id = aws_vpc.terraform_vpc.id
-    cidr_block = var.public_subnet_cidrs[count.index]
-    availability_zone = element(var.azs, count.index) 
+  count             = length(var.public_subnet_cidrs)
+  vpc_id            = aws_vpc.terraform_vpc.id
+  cidr_block        = var.public_subnet_cidrs[count.index]
+  availability_zone = element(var.azs, count.index)
 
-    tags = {
-        Name = "${var.vpc_name_tag}-public-${count.index +1}"
+  tags = {
+    Name = "${var.vpc_name_tag}-public-${count.index + 1}"
 
-    }  
+  }
 
 }
 
 resource "aws_internet_gateway" "igw" {
-    vpc_id = aws_vpc.terraform_vpc.id
+  vpc_id = aws_vpc.terraform_vpc.id
 
-    tags = {
-        Name = "my_igw"
-    }
+  tags = {
+    Name = "my_igw"
+  }
 }
 
 resource "aws_route_table_association" "routing" {
-    count = length(var.public_subnet_cidrs)
-    subnet_id = aws_subnet.subnet[count.index].id
-    route_table_id = data.aws_route_table.main.id
+  count          = length(var.public_subnet_cidrs)
+  subnet_id      = aws_subnet.subnet[count.index].id
+  route_table_id = data.aws_route_table.main.id
 }
 
 resource "aws_route" "route" {
-    route_table_id = data.aws_route_table.main
-    destination_cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw.id   
+  route_table_id         = data.aws_route_table.main
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.igw.id
 }
 
 

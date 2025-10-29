@@ -1,19 +1,19 @@
 variable "vpc_cidr" {
-    description = "VPC CIDR block"
-    default = {}
+  description = "VPC CIDR block"
+  default     = {}
 }
 
 variable "vpc_name_tag" {
-    description = "variable name"
-    default = "terraform_vpc"
+  description = "variable name"
+  default     = {}
 }
 
 variable "public_subnet_cidrs" {
-    description = "subnets cidr range"
-    default = 
+  description = "subnets cidr range"
+  default     = {}
 }
 
 variable "azs" {
-    description = "list of availability_zones"
-    default = {}
+  description = "list of availability_zones"
+  default     = {}
 }
