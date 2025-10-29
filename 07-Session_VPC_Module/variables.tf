@@ -1,12 +1,13 @@
 variable "vpc_cidr" {
   description = "VPC CIDR block"
-  type = string
+  type        = string
 }
 
 variable "vpc_name_tag" {
-  description = "variable name"
-  type = string
+  description = "VPC name tag"
+  type        = string
 }
+
 
 
 variable "public_subnet_cidrs" {
@@ -17,6 +18,6 @@ variable "public_subnet_cidrs" {
 
 variable "azs" {
   description = "list of availability_zones"
-  type = list(string)
-
+  type        = list(string)
+  default     = []
 }
