@@ -34,7 +34,7 @@ resource "aws_route_table" "public_rt" {
     vpc_id = aws_vpc.terraform_vpc.id
 
     tags = {
-        Name = $(var.vpc_name_tag)-public_rt
+        Name = "$(var.vpc_name_tag)-public_rt"
     }
 }
 
