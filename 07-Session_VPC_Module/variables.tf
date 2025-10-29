@@ -11,7 +11,7 @@ variable "vpc_name_tag" {
 variable "public_subnet_cidrs" {
   description = "subnets cidr range"
   type = list(string)
-  default     = {}
+  default     = []
 }
 
 variable "azs" {
