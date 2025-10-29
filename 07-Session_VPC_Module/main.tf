@@ -30,14 +30,23 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
+resource "aws_route_table" "public_rt" {
+    vpc_id = aws_vpc.terraform_vpc.id
+
+    tags = {
+        Name = $(var.vpc_name_tag)-public_rt
+    }
+}
+
+
 resource "aws_route_table_association" "routing" {
   count          = length(var.public_subnet_cidrs)
-  subnet_id      = aws_subnet.subnet[count.index].id
-  route_table_id = data.aws_route_table.main.id
+  subnet_id      = aws_subnet.subnets[count.index].id
+  route_table_id = aws_route_table.public_rt.id
 }
 
 resource "aws_route" "route" {
-  route_table_id         = data.aws_route_table.main
+  route_table_id         = aws_route_table.public_rt.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.igw.id
 }
