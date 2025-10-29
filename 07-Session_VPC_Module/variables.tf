@@ -8,10 +8,10 @@ variable "vpc_name_tag" {
   type = string
 }
 
+
 variable "public_subnet_cidrs" {
-  description = "subnets cidr range"
-  type = list(string)
-  
+  description = "List of public subnet CIDRs"
+  type        = list(string)
 }
 
 variable "azs" {
