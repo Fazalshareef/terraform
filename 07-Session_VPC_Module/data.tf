@@ -6,7 +6,7 @@ data "aws_route_table" "main" {
 
   }
   filter {
-    name   = "association_main"
+    name   = "association.main"
     values = ["true"]
   }
 }
