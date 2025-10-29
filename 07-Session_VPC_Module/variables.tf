@@ -8,7 +8,7 @@ variable "vpc_name_tag" {
   type = string
 }
 
-variable "public_subnets_cidrs" {
+variable "public_subnet_cidrs" {
   description = "subnets cidr range"
   type = list(string)
   
